@@ -1,4 +1,4 @@
-package com.ll.gramgram.domain.global.security;
+package com.ll.gramgram.global.security;
 
 import com.ll.gramgram.domain.member.entitiy.Member;
 import com.ll.gramgram.domain.member.repository.MemberRepository;

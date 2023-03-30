@@ -1,4 +1,4 @@
-package com.ll.gramgram.domain.global.initData;
+package com.ll.gramgram.global.initData;
 
 import com.ll.gramgram.domain.member.service.MemberService;
 import org.springframework.boot.CommandLineRunner;
