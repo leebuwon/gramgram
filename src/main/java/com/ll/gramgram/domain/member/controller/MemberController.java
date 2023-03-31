@@ -2,6 +2,7 @@ package com.ll.gramgram.domain.member.controller;
 
 import com.ll.gramgram.domain.member.entitiy.Member;
 import com.ll.gramgram.domain.member.service.MemberService;
+import com.ll.gramgram.standard.util.Ut;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -48,7 +49,7 @@ public class MemberController {
 //        String username = joinForm.getUsername();
 //        String password = joinForm.getPassword();
         memberService.join(joinForm.getUsername(), joinForm.getPassword());;
-        return "redirect:/";
+        return "redirect:/member/login?msg=" + Ut.url.encode("회원가입이 완료되었습니다.\n로그인 후 이용해주세요.");
     }
     @PreAuthorize("isAnonymous()")
     @GetMapping("/login")
