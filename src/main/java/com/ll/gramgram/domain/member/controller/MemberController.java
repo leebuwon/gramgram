@@ -52,6 +52,7 @@ public class MemberController {
         RsData<Member> joinRs = memberService.join(joinForm.getUsername(), joinForm.getPassword());;
         if (joinRs.isFail()){
             return rq.historyBack(joinRs.getMsg());
+//            return rq.historyBack("메롱");
         }
 
         String msg = joinRs.getMsg() + "\n 로그인 후 이용해주세요.";
