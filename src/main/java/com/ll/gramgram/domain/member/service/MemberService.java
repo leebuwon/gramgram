@@ -2,6 +2,7 @@ package com.ll.gramgram.domain.member.service;
 
 import com.ll.gramgram.domain.member.entitiy.Member;
 import com.ll.gramgram.domain.member.repository.MemberRepository;
+import com.ll.gramgram.global.rsData.RsData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,12 +23,20 @@ public class MemberService {
     }
 
     @Transactional
-    public Member join(String username, String password) {
+    public RsData<Member> join(String username, String password) {
+        // 이런 유효성 테스트는 컨트롤러에서 해도되고 서비스에서 해도된다.
+        if (findByUsername(username).isPresent()){
+            return RsData.of("F-1", "해당 아이디(%s)는 이미 사용 중 입니다.".formatted(username));
+        }
+
+
         Member member = Member.builder()
                 .username(username)
                 .password(passwordEncoder.encode(password))
                 .build();
 
-        return memberRepository.save(member);
+        memberRepository.save(member);
+
+        return RsData.of("S-1", "회원가입 완료되었습니다.", member);
     }
 }

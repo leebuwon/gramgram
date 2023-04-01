@@ -2,6 +2,7 @@ package com.ll.gramgram.domain.member.controller;
 
 import com.ll.gramgram.domain.member.entitiy.Member;
 import com.ll.gramgram.domain.member.service.MemberService;
+import com.ll.gramgram.global.rsData.RsData;
 import com.ll.gramgram.standard.util.Ut;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -46,10 +47,14 @@ public class MemberController {
     @PreAuthorize("isAnonymous()")
     @PostMapping("/join")
     public String join(@Valid JoinForm joinForm) {
-//        String username = joinForm.getUsername();
-//        String password = joinForm.getPassword();
-        memberService.join(joinForm.getUsername(), joinForm.getPassword());;
-        return "redirect:/member/login?msg=" + Ut.url.encode("회원가입이 완료되었습니다.\n로그인 후 이용해주세요.");
+        RsData<Member> joinRs = memberService.join(joinForm.getUsername(), joinForm.getPassword());;
+        if (joinRs.isFail()){
+            return "common/js";
+        }
+
+        String msg = joinRs.getMsg() + "\n 로그인 후 이용해주세요.";
+
+        return "redirect:/member/login?msg=" + Ut.url.encode(msg);
     }
     @PreAuthorize("isAnonymous()")
     @GetMapping("/login")
