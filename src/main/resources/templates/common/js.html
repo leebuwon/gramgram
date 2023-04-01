@@ -1,5 +1,9 @@
-<script>
-  alert('해당 아이디(user1)는 이미 사용중입니다.');
-  // 브라우저가 패스워드만 말고 다 복원시켜준다.
-  history.back();
+<script th:inline="javascript">
+    const alertMsg = /*[[${alertMsg}]]*/ null;
+
+    if (alertMsg && alertMsg.trim().length > 0) {
+        alert(alertMsg.trim());
+    }
+
+    history.back();
 </script>

@@ -2,6 +2,7 @@ package com.ll.gramgram.domain.member.controller;
 
 import com.ll.gramgram.domain.member.entitiy.Member;
 import com.ll.gramgram.domain.member.service.MemberService;
+import com.ll.gramgram.global.rq.Rq;
 import com.ll.gramgram.global.rsData.RsData;
 import com.ll.gramgram.standard.util.Ut;
 import jakarta.validation.Valid;
@@ -27,6 +28,7 @@ import java.security.Principal;
 public class MemberController {
 
     private final MemberService memberService;
+    private final Rq rq;
     @PreAuthorize("isAnonymous()")
     @GetMapping("/join")
     public String showJoin() {
@@ -49,7 +51,7 @@ public class MemberController {
     public String join(@Valid JoinForm joinForm) {
         RsData<Member> joinRs = memberService.join(joinForm.getUsername(), joinForm.getPassword());;
         if (joinRs.isFail()){
-            return "common/js";
+            return rq.historyBack(joinRs.getMsg());
         }
 
         String msg = joinRs.getMsg() + "\n 로그인 후 이용해주세요.";
