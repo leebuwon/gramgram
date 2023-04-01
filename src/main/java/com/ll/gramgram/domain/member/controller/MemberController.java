@@ -51,13 +51,11 @@ public class MemberController {
     public String join(@Valid JoinForm joinForm) {
         RsData<Member> joinRs = memberService.join(joinForm.getUsername(), joinForm.getPassword());;
         if (joinRs.isFail()){
-            return rq.historyBack(joinRs.getMsg());
+            return rq.historyBack(joinRs);
 //            return rq.historyBack("메롱");
         }
 
-        String msg = joinRs.getMsg() + "\n 로그인 후 이용해주세요.";
-
-        return "redirect:/member/login?msg=" + Ut.url.encode(msg);
+        return rq.redirectWithMsg("/member/login", joinRs);
     }
     @PreAuthorize("isAnonymous()")
     @GetMapping("/login")
