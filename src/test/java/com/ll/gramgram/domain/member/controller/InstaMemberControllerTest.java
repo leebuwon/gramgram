@@ -85,7 +85,7 @@ class InstaMemberControllerTest {
     }
 
     @Test
-    @Rollback(value = false)
+//    @Rollback(value = false)
     @DisplayName("인스타 회원 정보 입력 폼 처리")
     @WithUserDetails("user1")
     void t003() throws Exception {
