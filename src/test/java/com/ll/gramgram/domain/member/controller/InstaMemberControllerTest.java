@@ -1,6 +1,8 @@
 package com.ll.gramgram.domain.member.controller;
 
-import com.ll.gramgram.domain.member.entitiy.Member;
+import com.ll.gramgram.domain.home.instaMember.controller.InstaMemberController;
+import com.ll.gramgram.domain.home.instaMember.entity.InstaMember;
+import com.ll.gramgram.domain.home.instaMember.service.InstaMemberService;
 import com.ll.gramgram.domain.member.service.MemberService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,6 +35,9 @@ class InstaMemberControllerTest {
     @Autowired
     private MemberService memberService;
 
+    @Autowired
+    private InstaMemberService instaMemberService;
+
     @Test
     @DisplayName("인스타회원 정보 입력 폼")
     @WithUserDetails("user1")
@@ -63,7 +68,7 @@ class InstaMemberControllerTest {
 
     @Test
     @DisplayName("로그인을 안하고 인스타회원 정보 입력 페이지에 접근하면 로그인 페이지로 302")
-    void t003() throws Exception {
+    void t002() throws Exception {
         // WHEN
         ResultActions resultActions = mvc
                 .perform(get("/instaMember/connect"))
@@ -81,7 +86,7 @@ class InstaMemberControllerTest {
 //    @Rollback(value = false)
     @DisplayName("인스타 회원 정보 입력 폼 처리")
     @WithUserDetails("user1")
-    void t002() throws Exception {
+    void t003() throws Exception {
         // WHEN
         ResultActions resultActions = mvc
                 .perform(post("/instaMember/connect")
@@ -97,5 +102,9 @@ class InstaMemberControllerTest {
                 .andExpect(handler().methodName("connect"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrlPattern("/pop**"));
+
+        InstaMember instaMember = instaMemberService.findByUsername("abc123").orElse(null);
+
+        assertThat(instaMember).isNotNull();
     }
 }
