@@ -13,7 +13,7 @@ public class AdmHoneController {
 
     @GetMapping("")
     @PreAuthorize("hasAnyAuthority('admin')")
-    public String showMain(){
+    public String showMain() {
         return "adm/home/main";
     }
 }

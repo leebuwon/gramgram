@@ -1,15 +1,11 @@
 package com.ll.gramgram.domain.home.controller;
 
-import com.ll.gramgram.domain.member.entitiy.Member;
-import com.ll.gramgram.domain.member.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.security.Principal;
 import java.util.Enumeration;
 
 @Controller

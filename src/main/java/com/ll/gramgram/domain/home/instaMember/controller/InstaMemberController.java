@@ -26,13 +26,13 @@ public class InstaMemberController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/connect")
-    public String showConnect(){
+    public String showConnect() {
         return "usr/instaMember/connect";
     }
 
     @AllArgsConstructor
     @Getter
-    public static class ConnectForm{
+    public static class ConnectForm {
         @NotBlank
         @Size(min = 4, max = 30)
         private final String username;
@@ -45,8 +45,9 @@ public class InstaMemberController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/connect")
-    public String connect(@Valid ConnectForm connectForm){
+    public String connect(@Valid ConnectForm connectForm) {
         RsData<InstaMember> rsData = instaMemberService.connect(rq.getMember(), connectForm.getUsername(), connectForm.getGender());
+
 
         return rq.redirectWithMsg("/pop", "인스타그램 계정이 연결되었습니다.");
     }

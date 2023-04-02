@@ -4,7 +4,6 @@ import com.ll.gramgram.domain.member.entitiy.Member;
 import com.ll.gramgram.domain.member.service.MemberService;
 import com.ll.gramgram.global.rq.Rq;
 import com.ll.gramgram.global.rsData.RsData;
-import com.ll.gramgram.standard.util.Ut;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -13,12 +12,9 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.security.Principal;
 
 // gramgram 9강 까지 들었음
 
@@ -29,6 +25,7 @@ public class MemberController {
 
     private final MemberService memberService;
     private final Rq rq;
+
     @PreAuthorize("isAnonymous()")
     @GetMapping("/join")
     public String showJoin() {
@@ -37,26 +34,29 @@ public class MemberController {
 
     @Getter
     @AllArgsConstructor
-    private static class JoinForm{
+    private static class JoinForm {
         @NotBlank
-        @Size(min = 4, max =  30)
+        @Size(min = 4, max = 30)
         private final String username;
 
         @NotBlank
-        @Size(min = 4, max =  30)
+        @Size(min = 4, max = 30)
         private final String password;
     }
+
     @PreAuthorize("isAnonymous()")
     @PostMapping("/join")
     public String join(@Valid JoinForm joinForm) {
-        RsData<Member> joinRs = memberService.join(joinForm.getUsername(), joinForm.getPassword());;
-        if (joinRs.isFail()){
+        RsData<Member> joinRs = memberService.join(joinForm.getUsername(), joinForm.getPassword());
+        ;
+        if (joinRs.isFail()) {
             return rq.historyBack(joinRs);
 //            return rq.historyBack("메롱");
         }
 
         return rq.redirectWithMsg("/member/login", joinRs);
     }
+
     @PreAuthorize("isAnonymous()")
     @GetMapping("/login")
     public String showLogin() {

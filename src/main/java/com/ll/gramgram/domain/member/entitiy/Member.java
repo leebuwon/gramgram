@@ -1,5 +1,6 @@
 package com.ll.gramgram.domain.member.entitiy;
 
+import com.ll.gramgram.domain.home.instaMember.entity.InstaMember;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -34,6 +35,10 @@ public class Member {
 
     @LastModifiedDate
     private LocalDateTime modifyDate;
+
+    @OneToOne
+    @Setter
+    private InstaMember instaMember;
 
     public List<? extends GrantedAuthority> getGrantedAuthorities() {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();

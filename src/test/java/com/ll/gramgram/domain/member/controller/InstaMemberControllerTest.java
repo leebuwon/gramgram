@@ -3,6 +3,7 @@ package com.ll.gramgram.domain.member.controller;
 import com.ll.gramgram.domain.home.instaMember.controller.InstaMemberController;
 import com.ll.gramgram.domain.home.instaMember.entity.InstaMember;
 import com.ll.gramgram.domain.home.instaMember.service.InstaMemberService;
+import com.ll.gramgram.domain.member.entitiy.Member;
 import com.ll.gramgram.domain.member.service.MemberService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithUserDetails;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -83,7 +85,7 @@ class InstaMemberControllerTest {
     }
 
     @Test
-//    @Rollback(value = false)
+    @Rollback(value = false)
     @DisplayName("인스타 회원 정보 입력 폼 처리")
     @WithUserDetails("user1")
     void t003() throws Exception {
@@ -105,6 +107,9 @@ class InstaMemberControllerTest {
 
         InstaMember instaMember = instaMemberService.findByUsername("abc123").orElse(null);
 
-        assertThat(instaMember).isNotNull();
+        Member member = memberService.findByUsername("user1").orElseThrow();
+
+
+        assertThat(member.getInstaMember()).isEqualTo(instaMember);
     }
 }
