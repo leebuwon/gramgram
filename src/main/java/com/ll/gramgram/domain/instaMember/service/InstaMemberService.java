@@ -3,6 +3,7 @@ package com.ll.gramgram.domain.instaMember.service;
 import com.ll.gramgram.domain.instaMember.entity.InstaMember;
 import com.ll.gramgram.domain.instaMember.repository.InstaMemberRepository;
 import com.ll.gramgram.domain.member.entitiy.Member;
+import com.ll.gramgram.domain.member.service.MemberService;
 import com.ll.gramgram.global.rsData.RsData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class InstaMemberService {
     private final InstaMemberRepository instaMemberRepository;
+    private final MemberService memberService;
 
     public Optional<InstaMember> findByUsername(String username) {
         return instaMemberRepository.findByUsername(username);
@@ -28,7 +30,7 @@ public class InstaMemberService {
 
         RsData<InstaMember> instaMemberRsData = create(username, gender);
 
-        member.setInstaMember(instaMemberRsData.getData());
+        memberService.updateInstaMember(member, instaMemberRsData.getData());
 
         return instaMemberRsData;
     }

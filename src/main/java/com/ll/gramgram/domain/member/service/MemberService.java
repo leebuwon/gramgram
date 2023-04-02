@@ -1,5 +1,6 @@
 package com.ll.gramgram.domain.member.service;
 
+import com.ll.gramgram.domain.instaMember.entity.InstaMember;
 import com.ll.gramgram.domain.member.entitiy.Member;
 import com.ll.gramgram.domain.member.repository.MemberRepository;
 import com.ll.gramgram.global.rsData.RsData;
@@ -38,5 +39,11 @@ public class MemberService {
         memberRepository.save(member);
 
         return RsData.of("S-1", "회원가입 완료되었습니다.", member);
+    }
+
+    @Transactional
+    public void updateInstaMember(Member member, InstaMember instaMember) {
+        member.setInstaMember(instaMember);
+        memberRepository.save(member);
     }
 }
