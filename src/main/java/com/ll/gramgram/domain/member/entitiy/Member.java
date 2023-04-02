@@ -1,6 +1,6 @@
 package com.ll.gramgram.domain.member.entitiy;
 
-import com.ll.gramgram.domain.home.instaMember.entity.InstaMember;
+import com.ll.gramgram.domain.instaMember.entity.InstaMember;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

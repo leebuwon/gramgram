@@ -1,7 +1,7 @@
-package com.ll.gramgram.domain.home.instaMember.service;
+package com.ll.gramgram.domain.instaMember.service;
 
-import com.ll.gramgram.domain.home.instaMember.entity.InstaMember;
-import com.ll.gramgram.domain.home.instaMember.repository.InstaMemberRepository;
+import com.ll.gramgram.domain.instaMember.entity.InstaMember;
+import com.ll.gramgram.domain.instaMember.repository.InstaMemberRepository;
 import com.ll.gramgram.domain.member.entitiy.Member;
 import com.ll.gramgram.global.rsData.RsData;
 import lombok.RequiredArgsConstructor;

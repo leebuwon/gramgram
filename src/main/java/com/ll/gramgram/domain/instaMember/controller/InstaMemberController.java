@@ -1,7 +1,7 @@
-package com.ll.gramgram.domain.home.instaMember.controller;
+package com.ll.gramgram.domain.instaMember.controller;
 
-import com.ll.gramgram.domain.home.instaMember.entity.InstaMember;
-import com.ll.gramgram.domain.home.instaMember.service.InstaMemberService;
+import com.ll.gramgram.domain.instaMember.entity.InstaMember;
+import com.ll.gramgram.domain.instaMember.service.InstaMemberService;
 import com.ll.gramgram.global.rq.Rq;
 import com.ll.gramgram.global.rsData.RsData;
 import jakarta.validation.Valid;

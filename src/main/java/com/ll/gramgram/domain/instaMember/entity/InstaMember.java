@@ -1,4 +1,4 @@
-package com.ll.gramgram.domain.home.instaMember.entity;
+package com.ll.gramgram.domain.instaMember.entity;
 
 
 import jakarta.persistence.*;

@@ -1,8 +1,8 @@
 package com.ll.gramgram.domain.member.controller;
 
-import com.ll.gramgram.domain.home.instaMember.controller.InstaMemberController;
-import com.ll.gramgram.domain.home.instaMember.entity.InstaMember;
-import com.ll.gramgram.domain.home.instaMember.service.InstaMemberService;
+import com.ll.gramgram.domain.instaMember.controller.InstaMemberController;
+import com.ll.gramgram.domain.instaMember.entity.InstaMember;
+import com.ll.gramgram.domain.instaMember.service.InstaMemberService;
 import com.ll.gramgram.domain.member.entitiy.Member;
 import com.ll.gramgram.domain.member.service.MemberService;
 import org.junit.jupiter.api.DisplayName;
