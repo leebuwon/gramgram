@@ -51,4 +51,8 @@ public class Member {
 
         return grantedAuthorities;
     }
+
+    public boolean hasConnectedInstaMember() {
+        return instaMember != null;
+    }
 }
